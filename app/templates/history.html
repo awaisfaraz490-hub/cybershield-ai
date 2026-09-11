@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Scan History — {{ app_name }}{% endblock %}
+{% block content %}
+<div class="app-shell">
+  {% include "_sidebar.html" %}
+  <div class="app-content">
+    <div class="page-header">
+      <h1>Scan History</h1>
+      <p>All your past scans, most recent first.</p>
+    </div>
+
+    <div class="panel">
+      {% if scans %}
+      <table class="data-table">
+        <thead><tr><th>Type</th><th>Date</th><th>Risk</th><th>Score</th><th>Status</th></tr></thead>
+        <tbody>
+          {% for scan in scans %}
+          <tr onclick="window.location.href='/history/{{ scan.id }}'" style="cursor:pointer;">
+            <td class="capitalize">{{ scan.scan_type }}</td>
+            <td>{{ scan.created_at.strftime('%b %d, %Y %H:%M') }}</td>
+            <td><span class="badge badge-{{ scan.risk_level|replace(' ', '')|lower }}">{{ scan.risk_level }}</span></td>
+            <td>{{ scan.risk_score }}/100</td>
+            <td>{{ scan.risk_level }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <div class="empty-state"><p>No scans yet.</p></div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

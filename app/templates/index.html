@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-badge">AI-Powered Defensive Security</div>
+    <h1 class="hero-title">Check Before You Click.</h1>
+    <p class="hero-subtitle">Analyze suspicious links, messages and screenshots for common phishing and scam indicators.</p>
+    <div class="hero-cta">
+      <a href="{{ '/scan/url' if user else '/register' }}" class="btn btn-primary btn-lg">Scan a Link</a>
+      <a href="{{ '/scan/message' if user else '/register' }}" class="btn btn-outline btn-lg">Analyze a Message</a>
+    </div>
+    <p class="hero-note">Free to try · No credentials ever required · Local heuristic analysis</p>
+  </div>
+</section>
+
+<section class="section" id="how-it-works">
+  <div class="section-container">
+    <h2 class="section-title">How It Works</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-icon">1</div>
+        <h3>Paste or Upload</h3>
+        <p>Submit a suspicious link, message, or a screenshot of one.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">2</div>
+        <h3>AI/Heuristic Analysis</h3>
+        <p>We scan for phishing patterns, urgency tactics, impersonation and more.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">3</div>
+        <h3>Get Clear Guidance</h3>
+        <p>See a risk score, the reasons behind it, and recommended next steps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="section-container">
+    <h2 class="section-title">Three Ways to Stay Safe</h2>
+    <div class="grid grid-3">
+      <div class="card feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>Link Detection</h3>
+        <p>Analyzes URL structure, domains, and known phishing patterns — without ever fetching or attacking the site.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>Message Analysis</h3>
+        <p>Detects urgency, threats, prize scams, credential requests, and impersonation in WhatsApp, SMS, email and more.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">🖼</div>
+        <h3>Screenshot Analysis</h3>
+        <p>Extracts text from screenshots via OCR and runs it through the same defensive analysis engine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-container">
+    <h2 class="section-title">Why {{ app_name }}</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Privacy First</h3>
+        <p>We never ask for your passwords, OTPs, recovery codes, or authentication cookies. Ever.</p>
+      </div>
+      <div class="card">
+        <h3>Transparent Scoring</h3>
+        <p>Every risk score comes with a clear explanation of exactly which indicators were detected.</p>
+      </div>
+      <div class="card">
+        <h3>Educational Focus</h3>
+        <p>We help you understand phishing and scam patterns, not just flag them.</p>
+      </div>
+      <div class="card">
+        <h3>No False Guarantees</h3>
+        <p>We provide risk indicators — never a guarantee that your account is (or isn't) compromised.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="section-container">
+    <h2 class="section-title">FAQ</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Can this tool tell me if my WhatsApp/Facebook has been hacked?</summary>
+        <p>No. {{ app_name }} analyzes submitted content for phishing/scam indicators. It cannot check the security status of your actual accounts. If you suspect a compromise, change your password and contact the platform's official support.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is my data safe?</summary>
+        <p>We never ask for passwords, OTPs, or recovery codes. Scan history stores only a short, safe summary — not full messages or images.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How accurate is the risk score?</summary>
+        <p>Scores are an AI/heuristic estimate based on known phishing patterns. They are not a scientific guarantee and should be used alongside your own judgment.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="section-container cta-container">
+    <h2>Ready to check something suspicious?</h2>
+    <a href="{{ '/dashboard' if user else '/register' }}" class="btn btn-primary btn-lg">Get Started Free</a>
+  </div>
+</section>
+
+{% endblock %}

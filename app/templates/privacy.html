@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Privacy — {{ app_name }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="section-container">
+    <h1 class="section-title">Privacy</h1>
+    <div class="privacy-content">
+      <p><strong>Never submit passwords, OTPs, authentication cookies, or recovery codes.</strong> {{ app_name }} never needs these to analyze content, and no legitimate service will ever ask you to share them.</p>
+      <p>Uploaded screenshots may contain personal information. Please remove sensitive details before uploading where possible.</p>
+      <p>{{ app_name }} provides risk indicators, not a guarantee of safety. Analysis is for defensive and educational purposes only.</p>
+      <p>Scan history stores only a short, safe summary of each scan — not full raw messages or uploaded images — unless you have explicitly enabled image retention in your deployment configuration.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

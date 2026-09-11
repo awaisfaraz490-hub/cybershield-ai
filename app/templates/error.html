@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Something went wrong — {{ app_name }}{% endblock %}
+{% block content %}
+<section class="auth-section">
+  <div class="auth-card" style="text-align:center;">
+    <h1 class="auth-title">Something went wrong</h1>
+    <p class="auth-subtitle">{{ message }}</p>
+    <a href="/" class="btn btn-primary">Go Home</a>
+  </div>
+</section>
+{% endblock %}

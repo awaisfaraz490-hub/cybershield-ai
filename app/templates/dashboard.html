@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — {{ app_name }}{% endblock %}
+{% block content %}
+<div class="app-shell">
+  {% include "_sidebar.html" %}
+  <div class="app-content">
+    <div class="page-header">
+      <h1>Welcome back, {{ user.full_name.split(' ')[0] }}</h1>
+      <p>Here's a summary of your security scans.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Scans</div>
+        <div class="stat-value">{{ total }}</div>
+      </div>
+      <div class="stat-card stat-danger">
+        <div class="stat-label">High-Risk Detections</div>
+        <div class="stat-value">{{ high }}</div>
+      </div>
+      <div class="stat-card stat-warning">
+        <div class="stat-label">Medium-Risk Detections</div>
+        <div class="stat-value">{{ medium }}</div>
+      </div>
+      <div class="stat-card stat-safe">
+        <div class="stat-label">Low-Risk Detections</div>
+        <div class="stat-value">{{ low }}</div>
+      </div>
+    </div>
+
+    <div class="quick-actions">
+      <a href="/scan/url" class="quick-action-card">
+        <span class="qa-icon">🔗</span>
+        <div><strong>Link Scanner</strong><p>Check a suspicious URL</p></div>
+      </a>
+      <a href="/scan/message" class="quick-action-card">
+        <span class="qa-icon">💬</span>
+        <div><strong>Message Scanner</strong><p>Check a suspicious message</p></div>
+      </a>
+      <a href="/scan/image" class="quick-action-card">
+        <span class="qa-icon">🖼</span>
+        <div><strong>Screenshot Scanner</strong><p>Check a screenshot</p></div>
+      </a>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Recent Scans</h2>
+        <a href="/history" class="link-more">View all →</a>
+      </div>
+      {% if scans %}
+      <table class="data-table">
+        <thead><tr><th>Type</th><th>Date</th><th>Risk</th><th>Score</th><th>Status</th></tr></thead>
+        <tbody>
+          {% for scan in scans %}
+          <tr onclick="window.location.href='/history/{{ scan.id }}'" style="cursor:pointer;">
+            <td class="capitalize">{{ scan.scan_type }}</td>
+            <td>{{ scan.created_at.strftime('%b %d, %Y') }}</td>
+            <td><span class="badge badge-{{ scan.risk_level|replace(' ', '')|lower }}">{{ scan.risk_level }}</span></td>
+            <td>{{ scan.risk_score }}/100</td>
+            <td>{{ scan.risk_level }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <div class="empty-state">
+        <p>No scans yet. Try scanning a link, message, or screenshot to get started.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

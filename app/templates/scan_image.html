@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Screenshot Scanner — {{ app_name }}{% endblock %}
+{% block content %}
+<div class="app-shell">
+  {% include "_sidebar.html" %}
+  <div class="app-content">
+    <div class="page-header">
+      <h1>Screenshot Scanner</h1>
+      <p>Upload a screenshot of a suspicious message or webpage. We'll extract the text and analyze it.</p>
+    </div>
+
+    <div class="privacy-warning">
+      ⚠️ Never upload passwords, OTPs, recovery codes, payment information, or other sensitive credentials.
+    </div>
+
+    <div class="panel scan-panel">
+      <form id="imageForm" class="scan-form">
+        <label for="imageInput">Upload image (JPG, JPEG, PNG, WebP — max 5MB)</label>
+        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,image/jpg" required>
+        <div id="imagePreview" class="image-preview" style="display:none;"></div>
+        <button type="submit" class="btn btn-primary" id="scanBtn">
+          <span class="btn-text">Analyze Screenshot</span>
+          <span class="btn-spinner" style="display:none;"></span>
+        </button>
+      </form>
+    </div>
+
+    <div id="resultContainer"></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/scanner.js"></script>
+<script>
+CyberShieldScanner.initImageScanner({ endpoint: "/api/scan/image" });
+</script>
+{% endblock %}

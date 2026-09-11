@@ -1,0 +1,12 @@
+<aside class="sidebar">
+  <nav class="sidebar-nav">
+    <a href="/dashboard" class="sidebar-link {{ 'active' if request.url.path == '/dashboard' }}">📊 Dashboard</a>
+    <a href="/scan/url" class="sidebar-link {{ 'active' if request.url.path == '/scan/url' }}">🔗 Link Scanner</a>
+    <a href="/scan/message" class="sidebar-link {{ 'active' if request.url.path == '/scan/message' }}">💬 Message Scanner</a>
+    <a href="/scan/image" class="sidebar-link {{ 'active' if request.url.path == '/scan/image' }}">🖼 Screenshot Scanner</a>
+    <a href="/history" class="sidebar-link {{ 'active' if request.url.path == '/history' }}">🕓 Scan History</a>
+    <a href="/tips" class="sidebar-link {{ 'active' if request.url.path == '/tips' }}">🛡 Security Tips</a>
+    <a href="/profile" class="sidebar-link {{ 'active' if request.url.path == '/profile' }}">👤 Profile</a>
+    <a href="/logout" class="sidebar-link sidebar-logout">🚪 Logout</a>
+  </nav>
+</aside>

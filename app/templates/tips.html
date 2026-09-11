@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Security Tips — {{ app_name }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="section-container">
+    <h1 class="section-title">Security Tips</h1>
+    <p class="section-subtitle">Practical habits that go a long way in protecting your accounts.</p>
+    <div class="grid grid-2">
+      {% for tip in tips %}
+      <div class="card tip-card">
+        <h3>{{ tip.title }}</h3>
+        <p>{{ tip.detail }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

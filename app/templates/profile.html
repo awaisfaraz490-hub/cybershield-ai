@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Profile — {{ app_name }}{% endblock %}
+{% block content %}
+<div class="app-shell">
+  {% include "_sidebar.html" %}
+  <div class="app-content">
+    <div class="page-header"><h1>Profile</h1></div>
+    <div class="panel">
+      <div class="profile-row"><span class="profile-label">Full Name</span><span>{{ user.full_name }}</span></div>
+      <div class="profile-row"><span class="profile-label">Email</span><span>{{ user.email }}</span></div>
+      <div class="profile-row"><span class="profile-label">Member Since</span><span>{{ user.created_at.strftime('%B %d, %Y') if user.created_at else '—' }}</span></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

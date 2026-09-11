@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{{ app_name }} — Think Before You Click.{% endblock %}</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">
+      <span class="logo-icon">🛡</span>
+      <span class="logo-text">{{ app_name }}</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      {% if user %}
+        <a href="/dashboard">Dashboard</a>
+        <a href="/scan/url">Link Scanner</a>
+        <a href="/scan/message">Message Scanner</a>
+        <a href="/scan/image">Screenshot Scanner</a>
+        <a href="/tips">Security Tips</a>
+        <a href="/logout" class="btn btn-outline btn-sm">Logout</a>
+      {% else %}
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/tips">Security Tips</a>
+        <a href="/login" class="btn btn-outline btn-sm">Log In</a>
+        <a href="/register" class="btn btn-primary btn-sm">Sign Up</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <span class="logo-icon">🛡</span> {{ app_name }}
+    </div>
+    <p class="footer-tagline">{{ app_tagline }}</p>
+    <div class="footer-links">
+      <a href="/tips">Security Tips</a>
+      <a href="/privacy">Privacy</a>
+    </div>
+    <p class="footer-disclaimer">
+      {{ app_name }} provides AI/heuristic risk indicators for educational and defensive purposes only.
+      It does not guarantee safety and cannot detect whether an account has already been compromised.
+    </p>
+  </div>
+</footer>
+
+<script src="/static/js/main.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

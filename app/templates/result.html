@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Scan Result — {{ app_name }}{% endblock %}
+{% block content %}
+<div class="app-shell">
+  {% include "_sidebar.html" %}
+  <div class="app-content">
+    <div class="page-header"><h1>Security Analysis</h1></div>
+
+    {% if scan %}
+    <div class="result-card">
+      <div class="result-risk-level risk-{{ scan.risk_level|replace(' ', '')|lower }}">
+        <span class="risk-label">{{ scan.risk_level }}</span>
+        <span class="risk-score">{{ scan.risk_score }} / 100</span>
+      </div>
+
+      <h3>Detected Indicators</h3>
+      {% if findings %}
+      <ul class="findings-list">
+        {% for f in findings %}<li>✓ {{ f }}</li>{% endfor %}
+      </ul>
+      {% else %}
+      <p>No strong indicators were detected.</p>
+      {% endif %}
+
+      <h3>Scanned Content Summary</h3>
+      <p class="summary-box">{{ scan.input_summary }}</p>
+
+      <a href="/{{ 'scan/url' if scan.scan_type == 'url' else ('scan/message' if scan.scan_type == 'message' else 'scan/image') }}" class="btn btn-primary">Scan Another</a>
+    </div>
+    {% else %}
+    <div class="empty-state"><p>Scan not found.</p></div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

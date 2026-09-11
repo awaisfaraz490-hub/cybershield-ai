@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Log In — {{ app_name }}{% endblock %}
+{% block content %}
+<section class="auth-section">
+  <div class="auth-card">
+    <h1 class="auth-title">Welcome back</h1>
+    <p class="auth-subtitle">Log in to access your dashboard.</p>
+
+    <div id="formAlert" class="alert alert-error" style="display:none;"></div>
+
+    <form id="loginForm" class="auth-form" novalidate>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required placeholder="Your password">
+
+      <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+        <span class="btn-text">Log In</span>
+        <span class="btn-spinner" style="display:none;"></span>
+      </button>
+    </form>
+
+    <p class="auth-switch">Don't have an account? <a href="/register">Sign up</a></p>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/auth.js"></script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Link Scanner — {{ app_name }}{% endblock %}
+{% block content %}
+<div class="app-shell">
+  {% include "_sidebar.html" %}
+  <div class="app-content">
+    <div class="page-header">
+      <h1>Link Scanner</h1>
+      <p>Paste a suspicious URL to check for common phishing indicators.</p>
+    </div>
+
+    <div class="panel scan-panel">
+      <form id="scanForm" class="scan-form">
+        <label for="urlInput">URL to scan</label>
+        <input type="text" id="urlInput" placeholder="https://example.com/account/verify" required>
+        <button type="submit" class="btn btn-primary" id="scanBtn">
+          <span class="btn-text">Scan Link</span>
+          <span class="btn-spinner" style="display:none;"></span>
+        </button>
+      </form>
+      <p class="sample-hint">Try a sample: <a href="#" class="sample-link" data-value="https://example.com/account/verify-login-now">https://example.com/account/verify-login-now</a></p>
+    </div>
+
+    <div id="resultContainer"></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/scanner.js"></script>
+<script>
+CyberShieldScanner.init({ endpoint: "/api/scan/url", buildPayload: (val) => ({ url: val }), inputId: "urlInput" });
+</script>
+{% endblock %}

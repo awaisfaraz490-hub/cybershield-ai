@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Message Scanner — {{ app_name }}{% endblock %}
+{% block content %}
+<div class="app-shell">
+  {% include "_sidebar.html" %}
+  <div class="app-content">
+    <div class="page-header">
+      <h1>Message Scanner</h1>
+      <p>Paste a WhatsApp, SMS, email, or social media message to analyze it for scam patterns.</p>
+    </div>
+
+    <div class="panel scan-panel">
+      <form id="scanForm" class="scan-form">
+        <label for="urlInput">Message text</label>
+        <textarea id="urlInput" rows="6" placeholder="Paste the suspicious message here..." required></textarea>
+        <button type="submit" class="btn btn-primary" id="scanBtn">
+          <span class="btn-text">Analyze Message</span>
+          <span class="btn-spinner" style="display:none;"></span>
+        </button>
+      </form>
+      <p class="sample-hint">Try a sample: <a href="#" class="sample-link" data-value="URGENT! Your account will be suspended today. Verify immediately by clicking this link: https://example.com/verify">"URGENT! Your account will be suspended today. Verify immediately..."</a></p>
+    </div>
+
+    <div id="resultContainer"></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/scanner.js"></script>
+<script>
+CyberShieldScanner.init({ endpoint: "/api/scan/message", buildPayload: (val) => ({ message: val }), inputId: "urlInput" });
+</script>
+{% endblock %}
